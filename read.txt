@@ -4,3 +4,5 @@ are you stupid?
 
 i make a change in the master  branch in 12:16
 i make some change again
+
+this time i am funny in dev branch

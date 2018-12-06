@@ -40,7 +40,8 @@ using namespace std;
 struct node {
     int val;
     node* next;
-    node(int x):val(x),next(nullptr){};
+    node* forward;
+    node(int x):val(x),next(nullptr),forward(nullptr){};
 };
 
 class list{
@@ -72,6 +73,7 @@ public:
         else{
             node* temp=new node(x1);
             tail->next=temp;
+            temp->forward=tail;
             tail=temp;
             num++;
         }
@@ -80,14 +82,46 @@ public:
         node* temp;
         temp=head;
         for(int i=0;i<num;i++){
-            cout<<temp->val<<endl;
+            cout<<temp->val<<" ";
             temp=temp->next;
         }
+        cout<<endl;
+    }
+    void print_all_inverse(){
+        node* temp;
+        temp=tail;
+        for(int i=0;i<num;i++){
+            cout<<temp->val<<" ";
+            temp=temp->forward;
+        }
+        cout<<endl;
     }
     int return_length(){
         return num;
     }
-    
+    void remove(int x){
+        node* temp;
+        node* count;
+        temp=head;
+        while(temp->next!=nullptr){
+            if(temp->val==x&&temp==head){
+                head=head->next;
+                delete temp;
+                temp=head;
+                num--;
+                
+            }else if (temp->val==x){
+                temp->forward->next=temp->next;
+                temp->next->forward=temp->forward;
+                count=temp->next;
+                delete temp;
+                temp=count;
+                num--;
+            }else{
+            temp=temp->next;
+            }
+        }
+    }
 };
 
 int main(){
@@ -96,6 +130,9 @@ int main(){
     a.insert_tail(8);
     a.insert_tail(9);
     a.print_all();
+    a.remove(5);
+    a.print_all();
+    a.print_all_inverse();
     cout<<a.return_length()<<endl;
     
     return 0;

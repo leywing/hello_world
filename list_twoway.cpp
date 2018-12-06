@@ -37,26 +37,27 @@ using namespace std;
 //
 //};
 
+template <class T>
 struct node {
-    int val;
-    node* next;
-    node* forward;
-    node(int x):val(x),next(nullptr),forward(nullptr){};
+    T val;
+    node<T>* next;
+    node<T>* forward;
+    node(T x):val(x),next(nullptr),forward(nullptr){};
 };
 
+template <class T>
 class list{
 private:
-    node* head;
-    node* tail;
+    node<T>* head;
+    node<T>* tail;
     int num;
 public:
     list(){
         head=nullptr;
-        
         num=0;
     }
     ~list(){
-        node* temp=head;
+        node<T>* temp=head;
         for(int i=0;i<num;i++){
             temp=head;
             head=head->next;
@@ -64,14 +65,14 @@ public:
         }
         //need attention
     }
-    void insert_tail(int x1){
+    void insert_tail(T x1){
         if(num==0){
-            head=new node(x1);
+            head=new node<T>(x1);
             tail=head;
             num=1;
         }
         else{
-            node* temp=new node(x1);
+            node<T>* temp=new node<T>(x1);
             tail->next=temp;
             temp->forward=tail;
             tail=temp;
@@ -79,7 +80,7 @@ public:
         }
     }
     void print_all(){
-        node* temp;
+        node<T>* temp;
         temp=head;
         for(int i=0;i<num;i++){
             cout<<temp->val<<" ";
@@ -88,7 +89,7 @@ public:
         cout<<endl;
     }
     void print_all_inverse(){
-        node* temp;
+        node<T>* temp;
         temp=tail;
         for(int i=0;i<num;i++){
             cout<<temp->val<<" ";
@@ -99,9 +100,9 @@ public:
     int return_length(){
         return num;
     }
-    void remove(int x){
-        node* temp;
-        node* count;
+    void remove(T x){
+        node<T>* temp;
+        node<T>* count;
         temp=head;
         while(temp->next!=nullptr){
             if(temp->val==x&&temp==head){
@@ -125,12 +126,15 @@ public:
 };
 
 int main(){
-    list a;
-    a.insert_tail(5);
-    a.insert_tail(8);
-    a.insert_tail(9);
+    
+    node<double> nd_1(6.5);
+    cout<<nd_1.val<<endl;
+    list<float> a;
+    a.insert_tail(5.6);
+    a.insert_tail(8.9);
+    a.insert_tail(9.0);
     a.print_all();
-    a.remove(5);
+    a.remove(5.6);
     a.print_all();
     a.print_all_inverse();
     cout<<a.return_length()<<endl;

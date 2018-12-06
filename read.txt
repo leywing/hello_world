@@ -9,3 +9,11 @@ i make a change in the master  branch in 12:16
 i make some change again
 
 this time i am funny in dev branch
+
+fenzhi2  on fenzhi2 fenzhi2 fenzhi2
+<<<<<<< HEAD
+
+fenzhi111111111111111111
+=======
+fenzhi2222222222222222222222222222222222222222
+>>>>>>> 2a6bfdb94e4e9875c52e89fd57d002af776cd216

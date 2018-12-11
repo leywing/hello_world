@@ -100,6 +100,16 @@ public:
     int return_length(){
         return num;
     }
+    int find(T x){
+        node<T>* temp=head;
+        while(temp!=nullptr){
+            if(temp->val==x){
+                return 1;
+            }
+            temp=temp->next;
+        }
+        return 0;
+    }
     void remove(T x){
         node<T>* temp;
         node<T>* count;
@@ -137,6 +147,10 @@ int main(){
     a.remove(5.6);
     a.print_all();
     a.print_all_inverse();
+    if(a.find(7)){
+        cout<<"success"<<endl;
+    }
+    else {cout<<"fail"<<endl;}
     cout<<a.return_length()<<endl;
     
     return 0;
